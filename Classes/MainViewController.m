@@ -39,18 +39,31 @@
 }
 
 -(void)buttonPressed:(id)sender {
-	NSLog(@"buttonPressed");
-	buttonPressed = 1;
+	UIButton *button = (UIButton *)sender;
+	
+	NSLog(@"buttonPressed %@",button.titleLabel.text);
+	if ([button.titleLabel.text isEqualToString:@"1"]) {
+		leftButtonPressed = 1;
+	}
+	else {
+		rightButtonPressed = 1;
+	}
 }
 
 -(void)buttonReleased:(id)sender {
-	NSLog(@"buttonReleased");
-	buttonPressed = 0;
-
+	UIButton *button = (UIButton *)sender;
+	NSLog(@"buttonReleased %@",button.titleLabel.text);
+	NSLog(@"buttonPressed %@",button.titleLabel.text);
+	if ([button.titleLabel.text isEqualToString:@"1"]) {
+		leftButtonPressed = 0;
+	}
+	else {
+		rightButtonPressed = 0;
+	}
 }
 
 - (void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)acceleration {
-	NSString *str= [NSString stringWithFormat: @"GOD;I;%g;%g;%g;%i;0;%f;%f;%g;#",0.0, 0.0, 0.0, buttonPressed, acceleration.x, acceleration.y, 0.0];
+	NSString *str= [NSString stringWithFormat: @"GOD;I;%g;%g;%g;%i;%i;%f;%f;%g;#",0.0, 0.0, 0.0, leftButtonPressed, rightButtonPressed, acceleration.x, acceleration.y, 0.0];
 	NSData *data = [str dataUsingEncoding: NSUTF8StringEncoding];
 	[socket sendData:data toHost:ip port:port withTimeout:-1 tag:1];
 }	

@@ -22,7 +22,9 @@
 #import "AsyncUdpSocket.h"
 
 @interface MainViewController : UIViewController <UIAccelerometerDelegate> {
-	int buttonPressed;
+	int leftButtonPressed;
+	int rightButtonPressed;
+
 	AsyncUdpSocket *socket;
 	NSUserDefaults *defaults;
 	NSString *ip;
