@@ -63,7 +63,7 @@
 }
 
 - (void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)acceleration {
-	NSString *str= [NSString stringWithFormat: @"GOD;I;%f;%f;%f;%i;%i;%f;%f;%g;#",(acceleration.x * -4), (acceleration.y * 4), (acceleration.z * 4), leftButtonPressed, rightButtonPressed, 0.0, 0.0, 0.0];
+	NSString *str= [NSString stringWithFormat: @"GOD;I;%f;%f;%f;%i;%i;%f;%f;%g;#",(acceleration.x * -10), (acceleration.y * 10), (acceleration.z * 10), leftButtonPressed, rightButtonPressed, 0.0, 0.0, 0.0];
 	NSData *data = [str dataUsingEncoding: NSUTF8StringEncoding];
 	[socket sendData:data toHost:ip port:port withTimeout:-1 tag:1];
 }	
